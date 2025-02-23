@@ -1,0 +1,46 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.delete-account {
+    width: 500px;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    background-color: #40E0D0;
+    font-size: 30px;
+    margin: 10px;
+    padding: 15px;
+    gap: 10px;
+}
+
+.delete-event {
+    width: 500px;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    background-color: #40E0D0;
+    font-size: 30px;
+    margin: 10px;
+    padding: 15px;
+    gap: 10px;
+}
+
+form input {
+    width: 50%;
+    font-size: 16px;
+}
+
+form button {
+    font-size: 16px;
+}
+
+.tickify {
+    margin-right: 30px;
+}
+
+
+

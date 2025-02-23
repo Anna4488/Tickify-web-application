@@ -1,0 +1,66 @@
+.name {
+    color: #800080;
+}
+
+.data {
+    width: 100%;
+    height: 100%;
+    justify-content: top;
+    display: flex;
+    margin: 10%;
+  
+    margin: 0%;
+    flex-direction: column;
+    padding: 10px;
+}
+.email {
+    font-size: 200%;
+    padding-left: 30px;
+    padding-top: 0%;
+    padding-bottom: 0%;
+}
+
+p {
+    margin: 0%;
+}
+
+.fname {
+    font-size: 200%;
+    padding-left: 30px;
+}
+
+.lname {
+    font-size: 200%;
+    padding-left: 30px;
+}
+
+.birthday {
+    font-size: 200%;
+    padding-left: 30px;
+}
+
+.big {
+    display: flexbox;
+}
+
+.login {
+    color: white;
+    text-decoration: underline;
+    font-size: 200%;
+}
+
+.text {
+    font-size: 200%;
+    padding-left: 30px;
+}
+
+.title {
+    color: #40E0D0;
+    font-size: 250%;
+    text-decoration: underline;
+    margin-bottom: 0%;
+}
+
+.button {
+    margin-top: 10px;
+}

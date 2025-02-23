@@ -1,0 +1,142 @@
+<?php
+// Include database connection
+include 'dbconnect.php';
+
+// Fetch tickets and their corresponding events from the database
+try {
+    $stmt = $db->prepare("
+        SELECT 
+            t.enum AS ticket_enum, 
+            t.price AS ticket_price, 
+            e.names AS event_name,
+            e.descriptions AS event_description
+        FROM 
+            ticket t
+        INNER JOIN 
+            events e ON t.enum = e.enum
+    ");
+    $stmt->execute();
+    $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo "Error fetching tickets: " . $e->getMessage();
+    die();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/Mainpage.css">
+    <link rel="stylesheet" href="styles/buyticket.css">
+    <title>Buy Tickets</title>
+    <script>
+        function updateSummary() {
+            const ticketRows = document.querySelectorAll(".ticket-row");
+            let totalPrice = 0;
+            let totalQuantity = 0;
+
+            ticketRows.forEach(row => {
+                const quantity = parseInt(row.querySelector(".ticket-quantity").value) || 0;
+                const price = parseFloat(row.querySelector(".ticket-price").dataset.price);
+                totalPrice += quantity * price;
+                totalQuantity += quantity;
+            });
+
+            document.getElementById("total-price").textContent = totalPrice.toFixed(2);
+            document.getElementById("total-quantity").value = totalQuantity;
+            document.getElementById("total-cost").value = totalPrice.toFixed(2);
+
+            validateTotalQuantity(totalQuantity);
+        }
+
+        function validateTotalQuantity(totalQuantity) {
+            const warning = document.getElementById("warning-message");
+            if (totalQuantity > 10) {
+                warning.textContent = "You cannot select more than 10 tickets in total.";
+                warning.style.display = "block";
+            } else {
+                warning.textContent = "";
+                warning.style.display = "none";
+            }
+        }
+
+        function validateForm(event) {
+            const ticketRows = document.querySelectorAll(".ticket-row");
+            let totalQuantity = 0;
+
+            ticketRows.forEach(row => {
+                const quantity = parseInt(row.querySelector(".ticket-quantity").value) || 0;
+                totalQuantity += quantity;
+            });
+
+            if (totalQuantity > 10) {
+                event.preventDefault();
+                alert("You cannot select more than 10 tickets in total.");
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <img src="images/logo.png" alt="Logo" class="logo">
+        <form class="search-bar" action="/searchresults.php" method="get">
+            <input type="text" placeholder="Search.." class="search-input">
+            <button type="submit" class="search-button">Search</button>
+        </form>
+        <div class="button">
+            <form action="/login.php" method="get">
+                <button type="submit" class="login-button">Log in</button>
+            </form>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="sidebar">
+            <h1>Basic Event Info</h1>
+        </div>
+        <div class="content">
+            <form action="payment.php" method="post" onsubmit="validateForm(event)">
+                <table class="ticket-table">
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Description</th>
+                            <th>Price (€)</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($tickets as $ticket): ?>
+                        <tr class="ticket-row">
+                            <td><?= htmlspecialchars($ticket['event_name']) ?></td>
+                            <td><?= htmlspecialchars($ticket['event_description']) ?></td>
+                            <td class="ticket-price" data-price="<?= htmlspecialchars($ticket['ticket_price']) ?>">
+                                <?= htmlspecialchars($ticket['ticket_price']) ?>
+                            </td>
+                            <td>
+                                <input type="number" name="ticket[<?= htmlspecialchars($ticket['ticket_enum']) ?>]" 
+                                       class="ticket-quantity" min="0" value="0" onchange="updateSummary()">
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+                <div class="summary">
+                    <p>Total Price: €<span id="total-price">0.00</span></p>
+                </div>
+                <p id="warning-message" style="color: red; display: none;"></p>
+
+                <!-- Hidden fields to carry total quantity and cost -->
+                <input type="hidden" id="total-quantity" name="totalQuantity" value="0">
+                <input type="hidden" id="total-cost" name="totalCost" value="0.00">
+                
+                <div class="form-row buttons">
+                    <button type="submit" class="buy-button" name="buy_ticket">Buy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

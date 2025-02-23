@@ -1,0 +1,32 @@
+.name {
+    color: #800080;
+}
+
+.ticket {
+    width: auto;
+    height: 20%;
+    justify-content: top;
+    display: flex;
+    margin: 10%;
+    border: 2px solid #40E0D0;
+    margin: 0%;
+    flex-direction: column;
+    padding: 10px;
+}
+.ticketnr {
+    font-size: 200%;
+    
+}
+.eventnr {
+    font-size: 200%;
+}
+
+.types {
+    font-size: 200%;
+}
+
+.login {
+    color: white;
+    text-decoration: underline;
+    font-size: 200%;
+}

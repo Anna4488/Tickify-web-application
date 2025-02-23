@@ -1,0 +1,7 @@
+.login-background {
+    aspect-ratio: 12/16;
+}
+
+form {
+    grid-template-columns: 25% 75%;
+}

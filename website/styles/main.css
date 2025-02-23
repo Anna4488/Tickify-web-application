@@ -1,0 +1,135 @@
+@font-face {
+    font-family: 'Bebas-Neue';
+    font-style: oblique;
+    src: url('./BebasNeue-Regular.woff2') format('woff2'),
+         url('./BebasNeue-Regular.ttf') format('truetype');
+}
+
+body {
+    background-color: rgb(30, 30, 30);
+    color: white;
+    font-family: 'Bebas-Neue';
+    margin: 0px;
+    padding:0px;
+}
+
+.submit-button {
+    background-color: #800080;
+    color: white;
+    cursor: pointer;
+}
+
+.input-field {
+    background-color: rgb(30, 30, 30);;
+    color: white;
+}
+
+
+.link {
+    color: black;
+    padding-left:5vh ;
+    padding-right:5vh;
+}
+
+
+
+.container {
+    display: flex;
+}
+
+.header {
+    background-color: black;
+    color: black;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    
+}
+
+.logo {
+    width: 85px;
+    border-radius: 50%;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.tickify {
+    color: #40E0D0;
+    font-size: 50px;
+    margin-left: 60px;
+}
+
+.search-bar {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.search-input {
+    width: 55%;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 8px;
+    margin-right: 0px;
+}
+
+.search-button {
+    background-color: #40E0D0;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.button {
+    display: flex;
+    padding-right: 10px;
+    
+}
+
+.login-button {
+    background-color: #40E0D0;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.sidebar {
+    background-color: #40E0D0;
+    width: 250px;
+    height: 600px;
+    padding: 10px;
+    color: black;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.no-dots {
+    list-style-type: none;
+    margin-top: 120px;
+}
+
+.content {
+    display: flex;
+    margin: 25px;
+
+}
+
+.main-content {
+    display: flex;
+    flex: 1;
+
+}
+
+.message {
+    background-color: #40E0D0;
+    padding: 10px;
+    border-radius: 8px;
+    height: fit-content;
+    margin-left: 30px;
+    color: black;
+}
